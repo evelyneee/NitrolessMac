@@ -18,27 +18,18 @@ struct CoolButtonStyle: ButtonStyle {
     }
 }
 
-var emotesHardCode: [String: String] = [
-    "sad": "https://github.com/TheAlphaStream/nitroless-assets/blob/main/assets/sad.png?raw=true",
-    "goshimgay": "https://github.com/TheAlphaStream/nitroless-assets/blob/main/assets/goshimgay.png?raw=true",
-    "hug": "https://github.com/TheAlphaStream/nitroless-assets/blob/main/assets/hug.png?raw=true",
-    "heart_trans":"https://github.com/TheAlphaStream/nitroless-assets/blob/main/assets/heart_trans.png?raw=true",
-    "kekw":"https://github.com/TheAlphaStream/nitroless-assets/blob/main/assets/kekw.png?raw=true",
-    "heyurcute":"https://github.com/TheAlphaStream/nitroless-assets/blob/main/assets/heyurcute.png?raw=true",
-    "fail":"https://github.com/TheAlphaStream/nitroless-assets/blob/main/assets/02fail.png?raw=true",
-    "fr": "https://github.com/TheAlphaStream/nitroless-assets/blob/main/assets/fr.png?raw=true",
-    "vibeok": "https://github.com/TheAlphaStream/nitroless-assets/blob/main/assets/vibeok.png?raw=true",
-    "where": "https://github.com/TheAlphaStream/nitroless-assets/blob/main/assets/where.png?raw=true",
-    "troll": "https://github.com/TheAlphaStream/nitroless-assets/blob/main/assets/troll.png?raw=true",
-    "dancinghug": "https://raw.githubusercontent.com/Nitroless/Assets/main/assets/dancingpug.gif?raw=true"
-]
+// empty view for popup
 
 struct EmptyView: View {
     var body: some View {
         Text("cock")
     }
 }
+
+// emotes array
 var emotes: [[String: String]] = parseJSON(filename: "emotes.json")
+
+// actual view
 
 struct ContentView: View {
     let pasteboard = NSPasteboard.general
