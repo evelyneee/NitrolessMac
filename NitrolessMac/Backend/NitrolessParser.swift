@@ -4,43 +4,11 @@
 //
 //  Created by Amy While on 10/02/2021.
 //
-/*
- 
-import UIKit
 
+/*
 class NitrolessParser {
     static let shared = NitrolessParser()
     var lastUsed: Data?
-    
-    var emotes = [Emote]() {
-        didSet {
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: .EmoteReload, object: nil)
-            }
-        }
-    }
-    
-    private func saveToCache(data: Data, fileName: String) {
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let fileURL = documentsDirectory.appendingPathComponent(fileName)
-        if !FileManager.default.fileExists(atPath: fileURL.path) {
-            do {
-                try data.write(to: fileURL)
-            } catch {
-                fatalError("Well this is dumb")
-            }
-        }
-    }
-    
-    private func attemptRetrieve(fileName: String) -> Data? {
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let fileURL = documentsDirectory.appendingPathComponent(fileName)
-        do {
-            return try Data(contentsOf: fileURL)
-        } catch {
-            return nil
-        }
-    }
     
     private func initialGenerate(emote: [String : String]) -> Emote {
         var e = Emote()
@@ -179,4 +147,4 @@ struct Emote {
     var url: URL!
     var image: UIImage?
     var fullPath: String!
-}
+ }*/

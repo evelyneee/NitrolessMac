@@ -18,7 +18,7 @@ struct CoolButtonStyle: ButtonStyle {
     }
 }
 
-var emotes: [String: String] = [
+var emotesHardCode: [String: String] = [
     "sad": "https://github.com/TheAlphaStream/nitroless-assets/blob/main/assets/sad.png?raw=true",
     "goshimgay": "https://github.com/TheAlphaStream/nitroless-assets/blob/main/assets/goshimgay.png?raw=true",
     "hug": "https://github.com/TheAlphaStream/nitroless-assets/blob/main/assets/hug.png?raw=true",
@@ -29,12 +29,19 @@ var emotes: [String: String] = [
     "fr": "https://github.com/TheAlphaStream/nitroless-assets/blob/main/assets/fr.png?raw=true",
     "vibeok": "https://github.com/TheAlphaStream/nitroless-assets/blob/main/assets/vibeok.png?raw=true",
     "where": "https://github.com/TheAlphaStream/nitroless-assets/blob/main/assets/where.png?raw=true",
-    "troll": "https://github.com/TheAlphaStream/nitroless-assets/blob/main/assets/troll.png?raw=true"
+    "troll": "https://github.com/TheAlphaStream/nitroless-assets/blob/main/assets/troll.png?raw=true",
+    "dancinghug": "https://raw.githubusercontent.com/Nitroless/Assets/main/assets/dancingpug.gif?raw=true"
 ]
+
+struct EmptyView: View {
+    var body: some View {
+        Text("cock")
+    }
+}
+var emotes: [[String: String]] = parseJSON(filename: "emotes.json")
 
 struct ContentView: View {
     let pasteboard = NSPasteboard.general
-
     var columns: [GridItem] = [
         GridItem(spacing: 20),
         GridItem(spacing: 20),
@@ -66,6 +73,7 @@ struct ContentView: View {
                     }
                     if currentViewSeen != 1 {
                         Button(action: {
+                            print(emotes)
                             currentViewSeen = 1
                             title = "Credits"
                         }) {
@@ -101,23 +109,21 @@ struct ContentView: View {
                 
                 if currentViewSeen == 0 {
                     LazyVGrid(columns: columns) {
-                        ForEach(emotes.sorted(by: >), id: \.key) { emote, key in
+                        ForEach(0..<emotes.count, id: \.self) { emoteDict in
                             Button(action: {
                                 pasteboard.clearContents()
-                                pasteboard.setString(key, forType: NSPasteboard.PasteboardType.string)
+                                pasteboard.setString("https://raw.githubusercontent.com/Nitroless/Assets/main/assets/\((emotes[emoteDict])["name"]!)\((emotes[emoteDict])["type"]!)", forType: NSPasteboard.PasteboardType.string)
                             }) {
                                 VStack {
-                                    Image(emote).resizable()
+                                    ImageWithURL("https://raw.githubusercontent.com/Nitroless/Assets/main/assets/\((emotes[emoteDict])["name"]!)\((emotes[emoteDict])["type"]!)")
                                         .frame(width: 48, height: 48)
-                                        .scaledToFit()
                                         .cornerRadius(2)
-                                    Text(emote)
+                                    Text((emotes[emoteDict])["name"]!)
                                         .font(.caption)
                                         .foregroundColor(.primary)
                                 }
                             }
                             .buttonStyle(CoolButtonStyle())
-
                         }
                     }
                     .transition(.opacity)
@@ -204,6 +210,9 @@ struct ContentView: View {
                             .toggleStyle(SwitchToggleStyle())
                         }
                     }
+                }
+                if currentViewSeen == 3 {
+                    
                 }
             }
 
