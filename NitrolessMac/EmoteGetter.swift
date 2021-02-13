@@ -46,21 +46,21 @@ class ImageLoaderAndCache: ObservableObject {
     }
 }
 
-func parseJSON(filename: String) -> [[String:String]] {
-    let data: Data
-
-    guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
-    else {
-        fatalError("Couldn't find \(filename) in main bundle.")
-    }
-
+func getJSON(urlToRequest: String) -> Data {
     do {
-        data = try Data(contentsOf: file)
+        let JSONData: Data = try Data(contentsOf: URL(string: urlToRequest)!)
+        print("Got Wifi! JSON available")
+        return JSONData
     } catch {
-        fatalError("Couldn't load \(filename) from main bundle:\n\(error)")
+        print("No wifi, fallback to local JSON")
+        let JSONData = try! Data(contentsOf: Bundle.main.url(forResource: "emotes.json", withExtension: nil)!)
+        return JSONData
     }
+}
+
+func parseJSON(filename: String) -> [[String:String]] {
     do {
-        let arr = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [[String : String]] ?? [[String : String]]()
+        let arr = try JSONSerialization.jsonObject(with: getJSON(urlToRequest: "https://raw.githubusercontent.com/Nitroless/Assets/main/emotes.json") as Data, options: .mutableContainers) as? [[String : String]] ?? [[String : String]]()
         return arr
     } catch {
         return [["error": "could not parse"]]

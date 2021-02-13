@@ -29,9 +29,10 @@ struct EmptyView: View {
 // emotes array
 var emotes: [[String: String]] = parseJSON(filename: "emotes.json")
 
-// actual view
+// actual view  
 
 struct ContentView: View {
+    @State var recents: [[String:String]] = []
     let pasteboard = NSPasteboard.general
     var columns: [GridItem] = [
         GridItem(spacing: 20),
@@ -64,7 +65,6 @@ struct ContentView: View {
                     }
                     if currentViewSeen != 1 {
                         Button(action: {
-                            print(emotes)
                             currentViewSeen = 1
                             title = "Credits"
                         }) {
@@ -99,25 +99,56 @@ struct ContentView: View {
                 }
                 
                 if currentViewSeen == 0 {
-                    LazyVGrid(columns: columns) {
-                        ForEach(0..<emotes.count, id: \.self) { emoteDict in
-                            Button(action: {
-                                pasteboard.clearContents()
-                                pasteboard.setString("https://raw.githubusercontent.com/Nitroless/Assets/main/assets/\((emotes[emoteDict])["name"]!)\((emotes[emoteDict])["type"]!)", forType: NSPasteboard.PasteboardType.string)
-                            }) {
-                                VStack {
-                                    ImageWithURL("https://raw.githubusercontent.com/Nitroless/Assets/main/assets/\((emotes[emoteDict])["name"]!)\((emotes[emoteDict])["type"]!)")
-                                        .frame(width: 48, height: 48)
-                                        .cornerRadius(2)
-                                    Text((emotes[emoteDict])["name"]!)
-                                        .font(.caption)
-                                        .foregroundColor(.primary)
+                    VStack {
+                        if recents.count != 0 && recentsenabled {
+                            LazyVGrid(columns: columns) {
+                                ForEach(0..<recents.count, id: \.self) { recentEmote in
+                                    Button(action: {
+                                        pasteboard.clearContents()
+                                        pasteboard.setString("https://raw.githubusercontent.com/Nitroless/Assets/main/assets/\((recents[recentEmote])["name"]!)\((recents[recentEmote])["type"]!)", forType: NSPasteboard.PasteboardType.string)
+                                    }) {
+                                        VStack {
+                                            ImageWithURL("https://raw.githubusercontent.com/Nitroless/Assets/main/assets/\((recents[recentEmote])["name"]!)\((recents[recentEmote])["type"]!)")
+                                                .frame(maxWidth: 48, maxHeight: 48)
+                                                .scaledToFit()
+                                                .cornerRadius(2)
+                                            Text((recents[recentEmote])["name"]!)
+                                                .font(.caption)
+                                                .foregroundColor(.primary)
+                                        }
+                                    }
+                                    .buttonStyle(CoolButtonStyle())
                                 }
                             }
-                            .buttonStyle(CoolButtonStyle())
+                            Divider()
                         }
+                        LazyVGrid(columns: columns) {
+                            ForEach(0..<emotes.count, id: \.self) { emoteDict in
+                                Button(action: {
+                                    pasteboard.clearContents()
+                                    pasteboard.setString("https://raw.githubusercontent.com/Nitroless/Assets/main/assets/\((emotes[emoteDict])["name"]!)\((emotes[emoteDict])["type"]!)", forType: NSPasteboard.PasteboardType.string)
+                                    if recents.count == 3 {
+                                        recents.remove(at: 2)
+                                    }
+                                    recents.insert((emotes[emoteDict]), at: 0)
+                                    print(recents)
+                                }) {
+                                    VStack {
+                                        ImageWithURL("https://raw.githubusercontent.com/Nitroless/Assets/main/assets/\((emotes[emoteDict])["name"]!)\((emotes[emoteDict])["type"]!)")
+                                            .frame(maxWidth: 48, maxHeight: 48)
+                                            .scaledToFit()
+                                            .cornerRadius(2)
+                                        Text((emotes[emoteDict])["name"]!)
+                                            .font(.caption)
+                                            .foregroundColor(.primary)
+                                    }
+                                }
+                                .buttonStyle(CoolButtonStyle())
+                            }
+                        }
+                        .padding(.top)
+                        .transition(.opacity)
                     }
-                    .transition(.opacity)
                 }
                 if currentViewSeen == 1 {
                     VStack(alignment: .leading) {
