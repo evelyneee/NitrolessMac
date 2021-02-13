@@ -60,6 +60,7 @@ struct ContentView: View {
                         }) {
                             Image(systemName: "star.fill")
                                 .font(.title)
+                                .foregroundColor(.primary)
                         }
                         .buttonStyle(BorderlessButtonStyle())
                     }
@@ -69,6 +70,7 @@ struct ContentView: View {
                             title = "Credits"
                         }) {
                             Image(systemName: "sparkles")
+                                .foregroundColor(.primary)
                                 .font(.title)
                         }
                         .buttonStyle(BorderlessButtonStyle())
@@ -79,6 +81,7 @@ struct ContentView: View {
                             title = "Settings"
                         }) {
                             Image(systemName: "gearshape.fill")
+                                .foregroundColor(.primary)
                                 .font(.title)
                         }
                         .buttonStyle(BorderlessButtonStyle())
@@ -89,6 +92,7 @@ struct ContentView: View {
                             title = "Search"
                         }) {
                             Image(systemName: "magnifyingglass")
+                                .foregroundColor(.primary)
                                 .font(.title)
                         }
                         .buttonStyle(BorderlessButtonStyle())
@@ -116,17 +120,18 @@ struct ContentView: View {
 
                         }
                     }
+                    .transition(.opacity)
                 }
                 if currentViewSeen == 1 {
                     VStack(alignment: .leading) {
                         Button(action: {
-                            guard let url = URL(string: "https://twitter.com/Alpha_Stream") else { return }
+                            guard let url = URL(string: "https://twitter.com/Kutarin_") else { return }
                             openURL(url)
                         }) {
                             HStack {
                                 Image(systemName: "link")
                                 Divider()
-                                Text("TheAlpha_Stream ~ Site  ")
+                                Text("alpha ~ Site and Assets  ")
                                 Spacer()
                             }
                         }
@@ -136,6 +141,7 @@ struct ContentView: View {
                         .buttonStyle(BorderlessButtonStyle())
                         .cornerRadius(10)
                     }
+                    .transition(.opacity)
                     .padding(.top, 15)
                     VStack(alignment: .leading) {
                         Button(action: {
@@ -154,6 +160,7 @@ struct ContentView: View {
                         .buttonStyle(BorderlessButtonStyle())
                         .cornerRadius(10)
                     }
+                    .transition(.opacity)
                     VStack(alignment: .leading) {
                         Button(action: {
                             guard let url = URL(string: "https://twitter.com/a1thio") else { return }
@@ -173,6 +180,7 @@ struct ContentView: View {
                         .cornerRadius(10)
                         
                     }
+                    .transition(.opacity)
                 }
                 if currentViewSeen == 2 {
                     VStack {

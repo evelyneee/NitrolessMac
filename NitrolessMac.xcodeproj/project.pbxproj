@@ -12,6 +12,9 @@
 		1E85FE8024B5D0FE00B23E2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E85FE7F24B5D0FE00B23E2E /* Assets.xcassets */; };
 		1E85FE8324B5D0FE00B23E2E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E85FE8224B5D0FE00B23E2E /* Preview Assets.xcassets */; };
 		1E85FE8C24B5E07700B23E2E /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E85FE8B24B5E07700B23E2E /* EmptyView.swift */; };
+		3298727725D7E6FD002A34F8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3298727625D7E6FD002A34F8 /* NetworkManager.swift */; };
+		3298727A25D7E73D002A34F8 /* NSNotification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3298727925D7E73D002A34F8 /* NSNotification+Extension.swift */; };
+		3298727D25D7E783002A34F8 /* NitrolessParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3298727C25D7E783002A34F8 /* NitrolessParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +26,9 @@
 		1E85FE8424B5D0FE00B23E2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E85FE8524B5D0FE00B23E2E /* NitrolessMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NitrolessMac.entitlements; sourceTree = "<group>"; };
 		1E85FE8B24B5E07700B23E2E /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		3298727625D7E6FD002A34F8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		3298727925D7E73D002A34F8 /* NSNotification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extension.swift"; sourceTree = "<group>"; };
+		3298727C25D7E783002A34F8 /* NitrolessParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NitrolessParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +84,9 @@
 		3298726425D757AB002A34F8 /* Backend */ = {
 			isa = PBXGroup;
 			children = (
+				3298727625D7E6FD002A34F8 /* NetworkManager.swift */,
+				3298727925D7E73D002A34F8 /* NSNotification+Extension.swift */,
+				3298727C25D7E783002A34F8 /* NitrolessParser.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
@@ -151,9 +160,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3298727725D7E6FD002A34F8 /* NetworkManager.swift in Sources */,
+				3298727A25D7E73D002A34F8 /* NSNotification+Extension.swift in Sources */,
 				1E85FE7E24B5D0F800B23E2E /* ContentView.swift in Sources */,
 				1E85FE8C24B5E07700B23E2E /* EmptyView.swift in Sources */,
 				1E85FE7C24B5D0F800B23E2E /* Popover.swift in Sources */,
+				3298727D25D7E783002A34F8 /* NitrolessParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
