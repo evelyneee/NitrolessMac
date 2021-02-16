@@ -1,3 +1,11 @@
 # Nitroless for macOS
 
-gotta do this from school, fml
+SwiftUI app for accessing stickers from Nitroless
+
+# License 
+
+None yet
+
+# Building
+
+Just run ```xcodebuild```
