@@ -60,7 +60,7 @@ func getJSON(urlToRequest: String) -> Data {
 
 func parseJSON(filename: String) -> [[String:String]] {
     do {
-        let arr = try JSONSerialization.jsonObject(with: getJSON(urlToRequest: "https://raw.githubusercontent.com/Nitroless/Assets/main/emotes.json") as Data, options: .mutableContainers) as? [[String : String]] ?? [[String : String]]()
+        let arr = try JSONSerialization.jsonObject(with: getJSON(urlToRequest: "https://api.quiprr.dev/v1/nitroless/emotes") as Data, options: .mutableContainers) as? [[String : String]] ?? [[String : String]]()
         return arr
     } catch {
         return [["error": "could not parse"]]
