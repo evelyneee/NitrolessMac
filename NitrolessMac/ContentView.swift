@@ -105,10 +105,10 @@ struct ContentView: View {
                                 ForEach(0..<recents.count, id: \.self) { recentEmote in
                                     Button(action: {
                                         pasteboard.clearContents()
-                                        pasteboard.setString("https://raw.githubusercontent.com/Nitroless/Assets/main/assets/\((recents[recentEmote])["name"]!)\((recents[recentEmote])["type"]!)", forType: NSPasteboard.PasteboardType.string)
+                                        pasteboard.setString("https://nitroless.quiprr.dev/\((recents[recentEmote])["name"]!)\((recents[recentEmote])["type"]!)", forType: NSPasteboard.PasteboardType.string)
                                     }) {
                                         VStack {
-                                            ImageWithURL("https://raw.githubusercontent.com/Nitroless/Assets/main/assets/\((recents[recentEmote])["name"]!)\((recents[recentEmote])["type"]!)")
+                                            ImageWithURL("https://nitroless.quiprr.dev/\((recents[recentEmote])["name"]!)\((recents[recentEmote])["type"]!)")
                                                 .frame(maxWidth: 48, maxHeight: 48)
                                                 .scaledToFit()
                                                 .cornerRadius(2)
@@ -126,7 +126,7 @@ struct ContentView: View {
                             ForEach(0..<emotes.count, id: \.self) { emoteDict in
                                 Button(action: {
                                     pasteboard.clearContents()
-                                    pasteboard.setString("https://raw.githubusercontent.com/Nitroless/Assets/main/assets/\((emotes[emoteDict])["name"]!)\((emotes[emoteDict])["type"]!)", forType: NSPasteboard.PasteboardType.string)
+                                    pasteboard.setString("https://nitroless.quiprr.dev/\((emotes[emoteDict])["name"]!)\((emotes[emoteDict])["type"]!)", forType: NSPasteboard.PasteboardType.string)
                                     if recents.count == 3 {
                                         recents.remove(at: 2)
                                     }
@@ -134,7 +134,7 @@ struct ContentView: View {
                                     print(recents)
                                 }) {
                                     VStack {
-                                        ImageWithURL("https://raw.githubusercontent.com/Nitroless/Assets/main/assets/\((emotes[emoteDict])["name"]!)\((emotes[emoteDict])["type"]!)")
+                                        ImageWithURL("https://nitroless.quiprr.dev/\((emotes[emoteDict])["name"]!)\((emotes[emoteDict])["type"]!)")
                                             .frame(maxWidth: 48, maxHeight: 48)
                                             .scaledToFit()
                                             .cornerRadius(2)
