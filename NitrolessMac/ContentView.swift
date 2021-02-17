@@ -91,27 +91,32 @@ struct ContentView: View {
             ScrollView {
                 if currentViewSeen == 0 {
                     VStack {
-                        if recents.count != 0 && recentsenabled {
-                            LazyVGrid(columns: columns) {
-                                ForEach(0..<recents.count, id: \.self) { recentEmote in
-                                    Button(action: {
-                                        pasteboard.clearContents()
-                                        pasteboard.setString("https://nitroless.quiprr.dev/\((recents[recentEmote])["name"]!)\((recents[recentEmote])["type"]!)", forType: NSPasteboard.PasteboardType.string)
-                                    }) {
-                                        VStack {
-                                            ImageWithURL("https://nitroless.quiprr.dev/\((recents[recentEmote])["name"] ?? "")\((recents[recentEmote])["type"] ?? "")")
-                                                .frame(maxWidth: 48, maxHeight: 48)
-                                                .scaledToFit()
-                                                .cornerRadius(2)
-                                            Text((recents[recentEmote])["name"] ?? "")
-                                                .font(.caption)
-                                                .foregroundColor(.primary)
+                        if recentsenabled {
+                            ZStack {
+                                if recents.count == 0 {
+                                    Text("No recents")
+                                        .padding(30)
+                                }
+                                LazyVGrid(columns: columns) {
+                                    ForEach(0..<recents.count, id: \.self) { recentEmote in
+                                        Button(action: {
+                                            pasteboard.clearContents()
+                                            pasteboard.setString("https://nitroless.quiprr.dev/\((recents[recentEmote])["name"]!)\((recents[recentEmote])["type"]!)", forType: NSPasteboard.PasteboardType.string)
+                                        }) {
+                                            VStack {
+                                                ImageWithURL("https://nitroless.quiprr.dev/\((recents[recentEmote])["name"] ?? "")\((recents[recentEmote])["type"] ?? "")")
+                                                    .frame(maxWidth: 48, maxHeight: 48)
+                                                    .scaledToFit()
+                                                    .cornerRadius(2)
+                                                Text((recents[recentEmote])["name"] ?? "")
+                                                    .font(.caption)
+                                                    .foregroundColor(.primary)
+                                            }
                                         }
+                                        .buttonStyle(CoolButtonStyle())
                                     }
-                                    .buttonStyle(CoolButtonStyle())
                                 }
                             }
-                            
                             Divider()
                         }
                         LazyVGrid(columns: columns) {
