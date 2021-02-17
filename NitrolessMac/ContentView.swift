@@ -33,71 +33,62 @@ var emotes: [[String: String]] = parseJSON(filename: "emotes.json")
 
 struct ContentView: View {
     @State var recents: [[String:String]] = []
+    @State var SearchText: String = ""
     let pasteboard = NSPasteboard.general
     var columns: [GridItem] = [
         GridItem(spacing: 20),
         GridItem(spacing: 20),
         GridItem(spacing: 20)
     ]
+    @State var searchContents: [[String:String]] = []
     @Environment(\.openURL) var openURL
     @State var currentViewSeen: Int = 0
     @State var title: String = "Nitroless"
     @State var recentsenabled = true
     @State var searchenabled = true
     var body: some View {
-        VStack{
-            ScrollView {
-                HStack {
-                    Text(title)
-                        .font(.title)
-                        .fontWeight(.bold)
-                    Spacer()
-                    if currentViewSeen != 0 {
-                        Button(action: {
-                            currentViewSeen = 0
-                            title = "Nitroless"
-                        }) {
-                            Image(systemName: "star.fill")
-                                .font(.title)
-                                .foregroundColor(.primary)
-                        }
-                        .buttonStyle(BorderlessButtonStyle())
+        VStack {
+            HStack {
+                Text(title)
+                    .font(.title)
+                    .fontWeight(.bold)
+                Spacer()
+                if currentViewSeen != 0 {
+                    Button(action: {
+                        currentViewSeen = 0
+                        title = "Nitroless"
+                    }) {
+                        Image(systemName: "star.fill")
+                            .font(.title)
+                            .foregroundColor(.primary)
                     }
-                    if currentViewSeen != 1 {
-                        Button(action: {
-                            currentViewSeen = 1
-                            title = "Credits"
-                        }) {
-                            Image(systemName: "sparkles")
-                                .foregroundColor(.primary)
-                                .font(.title)
-                        }
-                        .buttonStyle(BorderlessButtonStyle())
-                    }
-                    if currentViewSeen != 2 {
-                        Button(action: {
-                            currentViewSeen = 2
-                            title = "Settings"
-                        }) {
-                            Image(systemName: "gearshape.fill")
-                                .foregroundColor(.primary)
-                                .font(.title)
-                        }
-                        .buttonStyle(BorderlessButtonStyle())
-                    }
-                    if currentViewSeen != 3 && searchenabled == true {
-                        Button(action: {
-                            currentViewSeen = 3
-                            title = "Search"
-                        }) {
-                            Image(systemName: "magnifyingglass")
-                                .foregroundColor(.primary)
-                                .font(.title)
-                        }
-                        .buttonStyle(BorderlessButtonStyle())
-                    }
+                    .buttonStyle(BorderlessButtonStyle())
                 }
-                
+
+                if currentViewSeen != 1 {
+                    Button(action: {
+                        currentViewSeen = 1
+                        title = "Settings"
+                    }) {
+                        Image(systemName: "gearshape.fill")
+                            .foregroundColor(.primary)
+                            .font(.title)
+                    }
+                    .buttonStyle(BorderlessButtonStyle())
+                }
+                if currentViewSeen != 2 && searchenabled == true {
+                    Button(action: {
+                        currentViewSeen = 2
+                        title = "Search"
+                    }) {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.primary)
+                            .font(.title)
+                    }
+                    .buttonStyle(BorderlessButtonStyle())
+                }
+            }
+            ScrollView {
                 if currentViewSeen == 0 {
                     VStack {
                         if recents.count != 0 && recentsenabled {
@@ -105,14 +96,14 @@ struct ContentView: View {
                                 ForEach(0..<recents.count, id: \.self) { recentEmote in
                                     Button(action: {
                                         pasteboard.clearContents()
-                                        pasteboard.setString("https://raw.githubusercontent.com/Nitroless/Assets/main/assets/\((recents[recentEmote])["name"]!)\((recents[recentEmote])["type"]!)", forType: NSPasteboard.PasteboardType.string)
+                                        pasteboard.setString("https://nitroless.quiprr.dev/\((recents[recentEmote])["name"]!)\((recents[recentEmote])["type"]!)", forType: NSPasteboard.PasteboardType.string)
                                     }) {
                                         VStack {
-                                            ImageWithURL("https://raw.githubusercontent.com/Nitroless/Assets/main/assets/\((recents[recentEmote])["name"]!)\((recents[recentEmote])["type"]!)")
+                                            ImageWithURL("https://nitroless.quiprr.dev/\((recents[recentEmote])["name"] ?? "")\((recents[recentEmote])["type"] ?? "")")
                                                 .frame(maxWidth: 48, maxHeight: 48)
                                                 .scaledToFit()
                                                 .cornerRadius(2)
-                                            Text((recents[recentEmote])["name"]!)
+                                            Text((recents[recentEmote])["name"] ?? "")
                                                 .font(.caption)
                                                 .foregroundColor(.primary)
                                         }
@@ -120,13 +111,14 @@ struct ContentView: View {
                                     .buttonStyle(CoolButtonStyle())
                                 }
                             }
+                            
                             Divider()
                         }
                         LazyVGrid(columns: columns) {
                             ForEach(0..<emotes.count, id: \.self) { emoteDict in
                                 Button(action: {
                                     pasteboard.clearContents()
-                                    pasteboard.setString("https://raw.githubusercontent.com/Nitroless/Assets/main/assets/\((emotes[emoteDict])["name"]!)\((emotes[emoteDict])["type"]!)", forType: NSPasteboard.PasteboardType.string)
+                                    pasteboard.setString("https://nitroless.quiprr.dev/\((emotes[emoteDict])["name"]!)\((emotes[emoteDict])["type"]!)", forType: NSPasteboard.PasteboardType.string)
                                     if recents.count == 3 {
                                         recents.remove(at: 2)
                                     }
@@ -134,7 +126,7 @@ struct ContentView: View {
                                     print(recents)
                                 }) {
                                     VStack {
-                                        ImageWithURL("https://raw.githubusercontent.com/Nitroless/Assets/main/assets/\((emotes[emoteDict])["name"]!)\((emotes[emoteDict])["type"]!)")
+                                        ImageWithURL("https://nitroless.quiprr.dev/\((emotes[emoteDict])["name"]!)\((emotes[emoteDict])["type"]!)")
                                             .frame(maxWidth: 48, maxHeight: 48)
                                             .scaledToFit()
                                             .cornerRadius(2)
@@ -151,66 +143,6 @@ struct ContentView: View {
                     }
                 }
                 if currentViewSeen == 1 {
-                    VStack(alignment: .leading) {
-                        Button(action: {
-                            guard let url = URL(string: "https://twitter.com/Kutarin_") else { return }
-                            openURL(url)
-                        }) {
-                            HStack {
-                                Image(systemName: "link")
-                                Divider()
-                                Text("alpha ~ Site and Assets  ")
-                                Spacer()
-                            }
-                        }
-                        .padding(10)
-                        .frame(width: 220)
-                        .background(Color.secondary.colorInvert())
-                        .buttonStyle(BorderlessButtonStyle())
-                        .cornerRadius(10)
-                    }
-                    .transition(.opacity)
-                    .padding(.top, 15)
-                    VStack(alignment: .leading) {
-                        Button(action: {
-                            guard let url = URL(string: "https://twitter.com/elihweilrahc13") else { return }
-                            openURL(url)
-                        }) {
-                            HStack {
-                               Image(systemName: "link")
-                               Divider()
-                               Text("Amy ~ iOS App and Parser")
-                            }
-                        }
-                        .padding(10)
-                        .frame(width: 220)
-                        .background(Color.secondary.colorInvert())
-                        .buttonStyle(BorderlessButtonStyle())
-                        .cornerRadius(10)
-                    }
-                    .transition(.opacity)
-                    VStack(alignment: .leading) {
-                        Button(action: {
-                            guard let url = URL(string: "https://twitter.com/a1thio") else { return }
-                            openURL(url)
-                        }) {
-                            HStack {
-                                Image(systemName: "link")
-                                Divider()
-                                Text("althio ~ macOS App        ")
-                                Spacer()
-                            }
-                        }
-                        .padding(10)
-                        .frame(width: 220)
-                        .background(Color.secondary.colorInvert())
-                        .buttonStyle(BorderlessButtonStyle())
-                        .cornerRadius(10)
-                        
-                    }
-                    .transition(.opacity)
-                }
-                if currentViewSeen == 2 {
                     VStack {
                         HStack {
                             Text("Recents")
@@ -231,10 +163,53 @@ struct ContentView: View {
                             }
                             .toggleStyle(SwitchToggleStyle())
                         }
+                        HStack {
+                            Text("Quit app")
+                                .font(.title3)
+                                .fontWeight(.bold)
+                            Spacer()
+                            Button(action: {
+                                NSApp.terminate(self)
+                            }) {
+                                Image(systemName: "xmark.circle.fill")
+                            }
+                        }
                     }
                 }
-                if currentViewSeen == 3 {
-                    
+                if currentViewSeen == 2 {
+                    VStack {
+                        TextField("Search", text: $SearchText)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        LazyVGrid(columns: columns) {
+                            ForEach(searchFilter(args: SearchText, emotes: emotes).sorted(by: >), id: \.key) { emoteDict, key in
+                                Button(action: {
+                                    pasteboard.clearContents()
+                                    pasteboard.setString("https://nitroless.quiprr.dev/\(emoteDict)\(key)", forType: NSPasteboard.PasteboardType.string)
+                                    if recents.count == 3 {
+                                        recents.remove(at: 2)
+                                    }
+                                    recents.insert(["\(key)":"\(searchFilter(args: SearchText, emotes: emotes))[key])])"], at: 0)
+                                    print(key)
+                                    print("https://nitroless.quiprr.dev/\(emoteDict)\(key)")
+                                }) {
+                                    VStack {
+                                        ImageWithURL("https://nitroless.quiprr.dev/\(emoteDict)\(key)")
+                                            .frame(maxWidth: 48, maxHeight: 48)
+                                            .scaledToFit()
+                                            .cornerRadius(2)
+                                        Text(emoteDict)
+                                            .font(.caption)
+                                            .foregroundColor(.primary)
+                                    }
+                                }
+                                .buttonStyle(CoolButtonStyle())
+                            }
+                        }
+                        .padding(.top)
+                        .transition(.opacity)
+                        
+                    }
+
                 }
             }
 

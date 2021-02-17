@@ -58,9 +58,33 @@ func getJSON(urlToRequest: String) -> Data {
     }
 }
 
+func searchFilter(args: String, emotes: [[String:String]]) -> [String:String] {
+    var emoteList: [String: Int] = [:]
+    var preOutputEmotes: [String] = []
+    var outputEmote: [String:String] = [:]
+    
+    for emote in 0..<emotes.count {
+        emoteList[(emotes[emote])["name"]!] = emote
+    }
+    for emote in emoteList.keys {
+        if emote.contains(args) {
+            preOutputEmotes.append(emote)
+        }
+    }
+    for emoteDict in emotes {
+        for i in 0..<preOutputEmotes.count {
+            if emoteDict["name"] == preOutputEmotes[i] {
+                outputEmote[preOutputEmotes[i]] = emoteDict["type"]
+            }
+        }
+    }
+    
+    return outputEmote
+}
+
 func parseJSON(filename: String) -> [[String:String]] {
     do {
-        let arr = try JSONSerialization.jsonObject(with: getJSON(urlToRequest: "https://raw.githubusercontent.com/Nitroless/Assets/main/emotes.json") as Data, options: .mutableContainers) as? [[String : String]] ?? [[String : String]]()
+        let arr = try JSONSerialization.jsonObject(with: getJSON(urlToRequest: "https://api.quiprr.dev/v1/nitroless/emotes") as Data, options: .mutableContainers) as? [[String : String]] ?? [[String : String]]()
         return arr
     } catch {
         return [["error": "could not parse"]]
