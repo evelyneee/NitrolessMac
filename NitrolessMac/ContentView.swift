@@ -18,21 +18,9 @@ struct CoolButtonStyle: ButtonStyle {
     }
 }
 
-// empty view for popup
-
-struct EmptyView: View {
-    var body: some View {
-        Text("cock")
-    }
-}
-
-// emotes array
-var emotes: [[String: String]] = parseJSON(filename: "emotes.json")
-
-// actual view  
-
+// actual view
 struct ContentView: View {
-    @State var recents: [[String:String]] = []
+    @State var recents = [Emote]()
     @State var SearchText: String = ""
     let pasteboard = NSPasteboard.general
     var columns: [GridItem] = [
@@ -98,17 +86,17 @@ struct ContentView: View {
                                         .padding(30)
                                 }
                                 LazyVGrid(columns: columns) {
-                                    ForEach(0..<recents.count, id: \.self) { recentEmote in
+                                    ForEach(recents, id: \.self) { emote in
                                         Button(action: {
                                             pasteboard.clearContents()
-                                            pasteboard.setString("https://nitroless.quiprr.dev/\((recents[recentEmote])["name"]!)\((recents[recentEmote])["type"]!)", forType: NSPasteboard.PasteboardType.string)
+                                            pasteboard.setString(emote.url.absoluteString, forType: NSPasteboard.PasteboardType.string)
                                         }) {
                                             VStack {
-                                                ImageWithURL("https://nitroless.quiprr.dev/\((recents[recentEmote])["name"] ?? "")\((recents[recentEmote])["type"] ?? "")")
+                                                FuckingSwiftUI(emote: emote)
                                                     .frame(maxWidth: 48, maxHeight: 48)
                                                     .scaledToFit()
                                                     .cornerRadius(2)
-                                                Text((recents[recentEmote])["name"] ?? "")
+                                                Text(emote.name ?? "")
                                                     .font(.caption)
                                                     .foregroundColor(.primary)
                                             }
@@ -120,22 +108,21 @@ struct ContentView: View {
                             Divider()
                         }
                         LazyVGrid(columns: columns) {
-                            ForEach(0..<emotes.count, id: \.self) { emoteDict in
+                            ForEach(NitrolessParser.shared.emotes, id: \.self) { emote in
                                 Button(action: {
                                     pasteboard.clearContents()
-                                    pasteboard.setString("https://nitroless.quiprr.dev/\((emotes[emoteDict])["name"]!)\((emotes[emoteDict])["type"]!)", forType: NSPasteboard.PasteboardType.string)
+                                    pasteboard.setString(emote.url.absoluteString, forType: NSPasteboard.PasteboardType.string)
                                     if recents.count == 3 {
                                         recents.remove(at: 2)
                                     }
-                                    recents.insert((emotes[emoteDict]), at: 0)
-                                    print(recents)
+                                    recents.insert(emote, at: 0)
                                 }) {
                                     VStack {
-                                        ImageWithURL("https://nitroless.quiprr.dev/\((emotes[emoteDict])["name"]!)\((emotes[emoteDict])["type"]!)")
+                                        FuckingSwiftUI(emote: emote)
                                             .frame(maxWidth: 48, maxHeight: 48)
                                             .scaledToFit()
                                             .cornerRadius(2)
-                                        Text((emotes[emoteDict])["name"]!)
+                                        Text(emote.name ?? "Error")
                                             .font(.caption)
                                             .foregroundColor(.primary)
                                     }
@@ -186,23 +173,21 @@ struct ContentView: View {
                         TextField("Search", text: $SearchText)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                         LazyVGrid(columns: columns) {
-                            ForEach(searchFilter(args: SearchText, emotes: emotes).sorted(by: >), id: \.key) { emoteDict, key in
+                            ForEach(searchFilter(args: SearchText), id: \.self) { emote in
                                 Button(action: {
                                     pasteboard.clearContents()
-                                    pasteboard.setString("https://nitroless.quiprr.dev/\(emoteDict)\(key)", forType: NSPasteboard.PasteboardType.string)
+                                    pasteboard.setString(emote.url.absoluteString, forType: NSPasteboard.PasteboardType.string)
                                     if recents.count == 3 {
                                         recents.remove(at: 2)
                                     }
-                                    recents.insert(["\(key)":"\(searchFilter(args: SearchText, emotes: emotes))[key])])"], at: 0)
-                                    print(key)
-                                    print("https://nitroless.quiprr.dev/\(emoteDict)\(key)")
+                                    recents.insert(emote, at: 0)
                                 }) {
                                     VStack {
-                                        ImageWithURL("https://nitroless.quiprr.dev/\(emoteDict)\(key)")
+                                        FuckingSwiftUI(emote: emote)
                                             .frame(maxWidth: 48, maxHeight: 48)
                                             .scaledToFit()
                                             .cornerRadius(2)
-                                        Text(emoteDict)
+                                        Text(emote.name ?? "")
                                             .font(.caption)
                                             .foregroundColor(.primary)
                                     }
@@ -220,5 +205,11 @@ struct ContentView: View {
 
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+            ContentView()
     }
 }
