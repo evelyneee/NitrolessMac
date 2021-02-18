@@ -92,7 +92,7 @@ struct ContentView: View {
                                             pasteboard.setString(emote.url.absoluteString, forType: NSPasteboard.PasteboardType.string)
                                         }) {
                                             VStack {
-                                                ImageWithURL(emote.url.absoluteString)
+                                                FuckingSwiftUI(emote: emote)
                                                     .frame(maxWidth: 48, maxHeight: 48)
                                                     .scaledToFit()
                                                     .cornerRadius(2)
@@ -118,7 +118,7 @@ struct ContentView: View {
                                     recents.insert(emote, at: 0)
                                 }) {
                                     VStack {
-                                        ImageWithURL(emote.url.absoluteString)
+                                        FuckingSwiftUI(emote: emote)
                                             .frame(maxWidth: 48, maxHeight: 48)
                                             .scaledToFit()
                                             .cornerRadius(2)
@@ -183,7 +183,7 @@ struct ContentView: View {
                                     recents.insert(emote, at: 0)
                                 }) {
                                     VStack {
-                                        ImageWithURL(emote.url.absoluteString)
+                                        FuckingSwiftUI(emote: emote)
                                             .frame(maxWidth: 48, maxHeight: 48)
                                             .scaledToFit()
                                             .cornerRadius(2)

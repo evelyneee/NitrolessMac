@@ -5,44 +5,46 @@
 // Created by e b on 12.02.21
 //
 
-import Foundation
 import SwiftUI
+import AppKit
 
-struct ImageWithURL: View {
-    
-    @ObservedObject var imageLoader: ImageLoaderAndCache
+struct FuckingSwiftUI: NSViewRepresentable {
 
-    init(_ url: String) {
-        imageLoader = ImageLoaderAndCache(imageURL: url)
-    }
+    let emote: Emote
 
-    var body: some View {
-        Image(nsImage: (NSImage(data: self.imageLoader.imageData) ?? NSImage(named: "sad")) ?? NSImage())
-              .resizable()
-              .clipped()
-    }
-}
-
-class ImageLoaderAndCache: ObservableObject {
-    
-    @Published var imageData = Data()
-    
-    init(imageURL: String) {
-        let cache = URLCache.shared
-        let request = URLRequest(url: URL(string: imageURL)!, cachePolicy: URLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 60.0)
-        if let data = cache.cachedResponse(for: request)?.data {
-            self.imageData = data
-        } else {
-            URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-                if let data = data, let response = response {
-                let cachedData = CachedURLResponse(response: response, data: data)
-                                    cache.storeCachedResponse(cachedData, for: request)
-                    DispatchQueue.main.async {
-                        self.imageData = data
-                    }
+    func makeNSView(context: Self.Context) -> NSView {
+        let containerView = NSView(frame: CGRect(x: 0, y: 0, width: 48, height: 48))
+        switch emote.type {
+            case .png: do {
+                let iv = NSImageView(frame: CGRect(x: 0, y: 0, width: 48, height: 48))
+                iv.image = emote.image
+                iv.autoresizesSubviews = true
+                containerView.addSubview(iv)
+            }
+            case .gif: do {
+                if let ag = emote.image as? AmyGif {
+                    containerView.layer = CALayer()
+                    containerView.wantsLayer = true
+                    let layer = CALayer()
+                    let keyPath = "contents"
+                    let frameAnimation = CAKeyframeAnimation(keyPath: keyPath)
+                    frameAnimation.repeatCount = .infinity
+                    frameAnimation.values = ag.image
+                    frameAnimation.duration = CFTimeInterval(ag.calculatedDuration)
+                    let layerRect = CGRect(origin: .zero, size: containerView.frame.size)
+                    layer.frame = layerRect
+                    layer.bounds = layerRect
+                    layer.add(frameAnimation, forKey: keyPath)
+                    containerView.layer?.addSublayer(layer)
                 }
-            }).resume()
+            }
+            default: fatalError("If you've called this, you're dead")
         }
+        return containerView
+    }
+
+    func updateNSView(_ uiView: NSView, context: NSViewRepresentableContext<FuckingSwiftUI>) {
+
     }
 }
 
