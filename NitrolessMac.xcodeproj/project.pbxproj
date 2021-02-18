@@ -12,6 +12,10 @@
 		1E85FE8024B5D0FE00B23E2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E85FE7F24B5D0FE00B23E2E /* Assets.xcassets */; };
 		1E85FE8324B5D0FE00B23E2E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E85FE8224B5D0FE00B23E2E /* Preview Assets.xcassets */; };
 		321E2AE825D82AEC003DE548 /* EmoteGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321E2AE725D82AEC003DE548 /* EmoteGetter.swift */; };
+		E164190D25DDFE7E00A18E9D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E164190A25DDFE7E00A18E9D /* NetworkManager.swift */; };
+		E164190E25DDFE7E00A18E9D /* GifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E164190B25DDFE7E00A18E9D /* GifManager.swift */; };
+		E164190F25DDFE7E00A18E9D /* NitrolessParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E164190C25DDFE7E00A18E9D /* NitrolessParser.swift */; };
+		E164191125DDFED600A18E9D /* NSNotification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E164191025DDFED500A18E9D /* NSNotification+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +27,10 @@
 		1E85FE8424B5D0FE00B23E2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E85FE8524B5D0FE00B23E2E /* NitrolessMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NitrolessMac.entitlements; sourceTree = "<group>"; };
 		321E2AE725D82AEC003DE548 /* EmoteGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoteGetter.swift; sourceTree = "<group>"; };
+		E164190A25DDFE7E00A18E9D /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E164190B25DDFE7E00A18E9D /* GifManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifManager.swift; sourceTree = "<group>"; };
+		E164190C25DDFE7E00A18E9D /* NitrolessParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NitrolessParser.swift; sourceTree = "<group>"; };
+		E164191025DDFED500A18E9D /* NSNotification+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSNotification+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +63,7 @@
 		1E85FE7A24B5D0F800B23E2E /* NitrolessMac */ = {
 			isa = PBXGroup;
 			children = (
+				E164190925DDFE7500A18E9D /* Amy moment */,
 				1E85FE7B24B5D0F800B23E2E /* Popover.swift */,
 				1E85FE7D24B5D0F800B23E2E /* ContentView.swift */,
 				321E2AE725D82AEC003DE548 /* EmoteGetter.swift */,
@@ -72,6 +81,17 @@
 				1E85FE8224B5D0FE00B23E2E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E164190925DDFE7500A18E9D /* Amy moment */ = {
+			isa = PBXGroup;
+			children = (
+				E164190B25DDFE7E00A18E9D /* GifManager.swift */,
+				E164191025DDFED500A18E9D /* NSNotification+Extension.swift */,
+				E164190A25DDFE7E00A18E9D /* NetworkManager.swift */,
+				E164190C25DDFE7E00A18E9D /* NitrolessParser.swift */,
+			);
+			path = "Amy moment";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,8 +163,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E164191125DDFED600A18E9D /* NSNotification+Extension.swift in Sources */,
+				E164190D25DDFE7E00A18E9D /* NetworkManager.swift in Sources */,
 				1E85FE7E24B5D0F800B23E2E /* ContentView.swift in Sources */,
 				321E2AE825D82AEC003DE548 /* EmoteGetter.swift in Sources */,
+				E164190E25DDFE7E00A18E9D /* GifManager.swift in Sources */,
+				E164190F25DDFE7E00A18E9D /* NitrolessParser.swift in Sources */,
 				1E85FE7C24B5D0F800B23E2E /* Popover.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
