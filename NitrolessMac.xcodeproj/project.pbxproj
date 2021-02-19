@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1E85FE7C24B5D0F800B23E2E /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E85FE7B24B5D0F800B23E2E /* Popover.swift */; };
-		1E85FE7E24B5D0F800B23E2E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E85FE7D24B5D0F800B23E2E /* ContentView.swift */; };
+		1E85FE7E24B5D0F800B23E2E /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E85FE7D24B5D0F800B23E2E /* Views.swift */; };
 		1E85FE8024B5D0FE00B23E2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E85FE7F24B5D0FE00B23E2E /* Assets.xcassets */; };
 		1E85FE8324B5D0FE00B23E2E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E85FE8224B5D0FE00B23E2E /* Preview Assets.xcassets */; };
 		321E2AE825D82AEC003DE548 /* EmoteGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321E2AE725D82AEC003DE548 /* EmoteGetter.swift */; };
@@ -21,7 +21,7 @@
 /* Begin PBXFileReference section */
 		1E85FE7824B5D0F800B23E2E /* NitrolessMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NitrolessMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E85FE7B24B5D0F800B23E2E /* Popover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
-		1E85FE7D24B5D0F800B23E2E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1E85FE7D24B5D0F800B23E2E /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
 		1E85FE7F24B5D0FE00B23E2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E85FE8224B5D0FE00B23E2E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1E85FE8424B5D0FE00B23E2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,9 +63,9 @@
 		1E85FE7A24B5D0F800B23E2E /* NitrolessMac */ = {
 			isa = PBXGroup;
 			children = (
-				E164190925DDFE7500A18E9D /* Amy moment */,
+				E164190925DDFE7500A18E9D /* Amy's brainfucking code */,
 				1E85FE7B24B5D0F800B23E2E /* Popover.swift */,
-				1E85FE7D24B5D0F800B23E2E /* ContentView.swift */,
+				1E85FE7D24B5D0F800B23E2E /* Views.swift */,
 				321E2AE725D82AEC003DE548 /* EmoteGetter.swift */,
 				1E85FE7F24B5D0FE00B23E2E /* Assets.xcassets */,
 				1E85FE8424B5D0FE00B23E2E /* Info.plist */,
@@ -83,7 +83,7 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		E164190925DDFE7500A18E9D /* Amy moment */ = {
+		E164190925DDFE7500A18E9D /* Amy's brainfucking code */ = {
 			isa = PBXGroup;
 			children = (
 				E164190B25DDFE7E00A18E9D /* GifManager.swift */,
@@ -91,7 +91,7 @@
 				E164190A25DDFE7E00A18E9D /* NetworkManager.swift */,
 				E164190C25DDFE7E00A18E9D /* NitrolessParser.swift */,
 			);
-			path = "Amy moment";
+			path = "Amy's brainfucking code";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,7 +165,7 @@
 			files = (
 				E164191125DDFED600A18E9D /* NSNotification+Extension.swift in Sources */,
 				E164190D25DDFE7E00A18E9D /* NetworkManager.swift in Sources */,
-				1E85FE7E24B5D0F800B23E2E /* ContentView.swift in Sources */,
+				1E85FE7E24B5D0F800B23E2E /* Views.swift in Sources */,
 				321E2AE825D82AEC003DE548 /* EmoteGetter.swift in Sources */,
 				E164190E25DDFE7E00A18E9D /* GifManager.swift in Sources */,
 				E164190F25DDFE7E00A18E9D /* NitrolessParser.swift in Sources */,

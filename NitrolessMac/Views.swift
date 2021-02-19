@@ -18,6 +18,93 @@ struct CoolButtonStyle: ButtonStyle {
     }
 }
 
+// search view
+
+struct SearchView: View {
+    @State var recents = [Emote]()
+    var columns: [GridItem] = [
+        GridItem(spacing: 20),
+        GridItem(spacing: 20),
+        GridItem(spacing: 20)
+    ]
+    let pasteboard = NSPasteboard.general
+    @Binding var SearchText: String
+    var body: some View {
+        VStack {
+            TextField("Search", text: $SearchText)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            LazyVGrid(columns: columns) {
+                ForEach(searchFilter(args: SearchText), id: \.self) { emote in
+                    Button(action: {
+                        pasteboard.clearContents()
+                        pasteboard.setString(emote.url.absoluteString, forType: NSPasteboard.PasteboardType.string)
+                        if recents.count == 3 {
+                            recents.remove(at: 2)
+                        }
+                        recents.insert(emote, at: 0)
+                    }) {
+                        VStack {
+                            FuckingSwiftUI(emote: emote)
+                                .frame(maxWidth: 48, maxHeight: 48)
+                                .scaledToFit()
+                                .cornerRadius(2)
+                            Text(emote.name ?? "")
+                                .font(.caption)
+                                .foregroundColor(.primary)
+                        }
+                    }
+                    .buttonStyle(CoolButtonStyle())
+                }
+            }
+            .padding(.top)
+            .transition(.opacity)
+            
+        }
+
+    }
+}
+
+// Settings View
+
+struct SettingsView: View {
+    @Binding var recentsenabled: Bool
+    @Binding var searchenabled: Bool
+    var body: some View {
+        VStack {
+            HStack {
+                Text("Recents")
+                    .font(.title3)
+                    .fontWeight(.bold)
+                Spacer()
+                Toggle(isOn: $recentsenabled) {
+                }
+                .toggleStyle(SwitchToggleStyle())
+            }
+            .padding(.top)
+            HStack {
+                Text("Search")
+                    .font(.title3)
+                    .fontWeight(.bold)
+                Spacer()
+                Toggle(isOn: $searchenabled) {
+                }
+                .toggleStyle(SwitchToggleStyle())
+            }
+            HStack {
+                Text("Quit app")
+                    .font(.title3)
+                    .fontWeight(.bold)
+                Spacer()
+                Button(action: {
+                    NSApp.terminate(self)
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                }
+            }
+        }
+    }
+}
+
 // actual view
 struct ContentView: View {
     @State var recents = [Emote]()
@@ -50,7 +137,7 @@ struct ContentView: View {
                             .font(.title)
                             .foregroundColor(.primary)
                     }
-                    .buttonStyle(BorderlessButtonStyle())
+                    .buttonStyle(CoolButtonStyle())
                 }
 
                 if currentViewSeen != 1 {
@@ -62,7 +149,7 @@ struct ContentView: View {
                             .foregroundColor(.primary)
                             .font(.title)
                     }
-                    .buttonStyle(BorderlessButtonStyle())
+                    .buttonStyle(CoolButtonStyle())
                 }
                 if currentViewSeen != 2 && searchenabled == true {
                     Button(action: {
@@ -73,7 +160,7 @@ struct ContentView: View {
                             .foregroundColor(.primary)
                             .font(.title)
                     }
-                    .buttonStyle(BorderlessButtonStyle())
+                    .buttonStyle(CoolButtonStyle())
                 }
             }
             ScrollView {
@@ -112,8 +199,17 @@ struct ContentView: View {
                                 Button(action: {
                                     pasteboard.clearContents()
                                     pasteboard.setString(emote.url.absoluteString, forType: NSPasteboard.PasteboardType.string)
-                                    if recents.count == 3 {
-                                        recents.remove(at: 2)
+                                    if recents.contains(emote) {
+                                        for i in 0..<recents.count {
+                                            if recents[i].name == emote.name {
+                                                recents.remove(at: i)
+                                                break
+                                            }
+                                        }
+                                    } else {
+                                        if recents.count == 3 {
+                                            recents.remove(at: 2)
+                                        }
                                     }
                                     recents.insert(emote, at: 0)
                                 }) {
@@ -135,81 +231,14 @@ struct ContentView: View {
                     }
                 }
                 if currentViewSeen == 1 {
-                    VStack {
-                        HStack {
-                            Text("Recents")
-                                .font(.title3)
-                                .fontWeight(.bold)
-                            Spacer()
-                            Toggle(isOn: $recentsenabled) {
-                            }
-                            .toggleStyle(SwitchToggleStyle())
-                        }
-                        .padding(.top)
-                        HStack {
-                            Text("Search")
-                                .font(.title3)
-                                .fontWeight(.bold)
-                            Spacer()
-                            Toggle(isOn: $searchenabled) {
-                            }
-                            .toggleStyle(SwitchToggleStyle())
-                        }
-                        HStack {
-                            Text("Quit app")
-                                .font(.title3)
-                                .fontWeight(.bold)
-                            Spacer()
-                            Button(action: {
-                                NSApp.terminate(self)
-                            }) {
-                                Image(systemName: "xmark.circle.fill")
-                            }
-                        }
-                    }
+                    SettingsView(recentsenabled: $recentsenabled, searchenabled: $searchenabled)
                 }
                 if currentViewSeen == 2 {
-                    VStack {
-                        TextField("Search", text: $SearchText)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                        LazyVGrid(columns: columns) {
-                            ForEach(searchFilter(args: SearchText), id: \.self) { emote in
-                                Button(action: {
-                                    pasteboard.clearContents()
-                                    pasteboard.setString(emote.url.absoluteString, forType: NSPasteboard.PasteboardType.string)
-                                    if recents.count == 3 {
-                                        recents.remove(at: 2)
-                                    }
-                                    recents.insert(emote, at: 0)
-                                }) {
-                                    VStack {
-                                        FuckingSwiftUI(emote: emote)
-                                            .frame(maxWidth: 48, maxHeight: 48)
-                                            .scaledToFit()
-                                            .cornerRadius(2)
-                                        Text(emote.name ?? "")
-                                            .font(.caption)
-                                            .foregroundColor(.primary)
-                                    }
-                                }
-                                .buttonStyle(CoolButtonStyle())
-                            }
-                        }
-                        .padding(.top)
-                        .transition(.opacity)
-                        
-                    }
-
+                    SearchView(SearchText: $SearchText)
                 }
             }
 
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding()
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-            ContentView()
     }
 }
