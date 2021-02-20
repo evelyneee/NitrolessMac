@@ -23,10 +23,11 @@ struct CoolButtonStyle: ButtonStyle {
 struct SearchView: View {
     @State var recents = [Emote]()
     var columns: [GridItem] = [
-        GridItem(.fixed(50), spacing: 20),
-        GridItem(.fixed(50), spacing: 20),
-        GridItem(.fixed(50), spacing: 20),
-        GridItem(.fixed(50), spacing: 20),
+        GridItem(spacing: 10),
+        GridItem(spacing: 10),
+        GridItem(spacing: 10),
+        GridItem(spacing: 10),
+        GridItem(spacing: 10)
     ]
     let pasteboard = NSPasteboard.general
     @Binding var SearchText: String
@@ -208,8 +209,8 @@ struct ContentView: View {
                                             }
                                         }
                                     } else {
-                                        if recents.count == 3 {
-                                            recents.remove(at: 2)
+                                        if recents.count == 5 {
+                                            recents.remove(at: 4)
                                         }
                                     }
                                     recents.insert(emote, at: 0)
