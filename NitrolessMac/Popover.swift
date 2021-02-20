@@ -32,7 +32,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         statusBarItem?.button?.title = "􀲴"
         statusBarItem?.button?.action = #selector(AppDelegate.togglePopover(_:))
-        
         NitrolessParser.shared.getEmotes()
     }
     @objc func showPopover(_ sender: AnyObject?) {

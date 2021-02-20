@@ -51,7 +51,7 @@ struct FuckingSwiftUI: NSViewRepresentable {
 
 func searchFilter(args: String) -> [Emote] {
     if args.isEmpty {
-        return NitrolessParser.shared.emotes
+        return []
     } else {
         return NitrolessParser.shared.emotes.filter { (emote:  Emote) -> Bool in
             emote.name.lowercased().contains(args.lowercased())

@@ -23,9 +23,10 @@ struct CoolButtonStyle: ButtonStyle {
 struct SearchView: View {
     @State var recents = [Emote]()
     var columns: [GridItem] = [
-        GridItem(spacing: 20),
-        GridItem(spacing: 20),
-        GridItem(spacing: 20)
+        GridItem(.fixed(50), spacing: 20),
+        GridItem(.fixed(50), spacing: 20),
+        GridItem(.fixed(50), spacing: 20),
+        GridItem(.fixed(50), spacing: 20),
     ]
     let pasteboard = NSPasteboard.general
     @Binding var SearchText: String
@@ -110,9 +111,11 @@ struct ContentView: View {
     @State var SearchText: String = ""
     let pasteboard = NSPasteboard.general
     var columns: [GridItem] = [
-        GridItem(spacing: 20),
-        GridItem(spacing: 20),
-        GridItem(spacing: 20)
+        GridItem(spacing: 10),
+        GridItem(spacing: 10),
+        GridItem(spacing: 10),
+        GridItem(spacing: 10),
+        GridItem(spacing: 10)
     ]
     @State var searchContents: [[String:String]] = []
     @Environment(\.openURL) var openURL
@@ -181,7 +184,6 @@ struct ContentView: View {
                                                 FuckingSwiftUI(emote: emote)
                                                     .frame(maxWidth: 48, maxHeight: 48)
                                                     .scaledToFit()
-                                                    .cornerRadius(2)
                                                 Text(emote.name ?? "")
                                                     .font(.caption)
                                                     .foregroundColor(.primary)
@@ -237,7 +239,7 @@ struct ContentView: View {
                 }
             }
 
-        }.frame(maxWidth: .infinity, maxHeight: .infinity)
+        }.frame(minWidth: 300, maxWidth: .infinity, maxHeight: .infinity)
         .padding()
     }
 }
