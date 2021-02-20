@@ -1,5 +1,5 @@
 //
-// ContentView.swift
+// Views.swift
 // NitrolessMac
 //
 // Created by e b on 12.02.21
@@ -47,7 +47,6 @@ struct SearchView: View {
                             FuckingSwiftUI(emote: emote)
                                 .frame(maxWidth: 48, maxHeight: 48)
                                 .scaledToFit()
-                                .cornerRadius(2)
                             Text(emote.name ?? "")
                                 .font(.caption)
                                 .foregroundColor(.primary)

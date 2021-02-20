@@ -34,6 +34,7 @@ struct FuckingSwiftUI: NSViewRepresentable {
                     let layerRect = CGRect(origin: .zero, size: containerView.frame.size)
                     layer.frame = layerRect
                     layer.bounds = layerRect
+                    containerView.layer?.cornerRadius = 5.0
                     layer.add(frameAnimation, forKey: keyPath)
                     containerView.layer?.addSublayer(layer)
                 }

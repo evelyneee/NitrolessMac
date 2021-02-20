@@ -16,6 +16,7 @@ struct NitrolessPopover: App {
         }
     }
 }
+
 class AppDelegate: NSObject, NSApplicationDelegate {
     var popover = NSPopover.init()
     var statusBarItem: NSStatusItem?
