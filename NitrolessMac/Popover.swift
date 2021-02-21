@@ -30,7 +30,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         popover.contentViewController = NSViewController()
         popover.contentViewController?.view = NSHostingView(rootView: contentView)
         statusBarItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        statusBarItem?.button?.title = "􀲴"
+        if let button = self.statusBarItem?.button {
+             button.image = NSImage(systemSymbolName: "ellipsis.bubble.fill", accessibilityDescription: "Nitroless")
+             button.action = #selector(togglePopover(_:))
+        }
         statusBarItem?.button?.action = #selector(AppDelegate.togglePopover(_:))
         NitrolessParser.shared.getEmotes()
     }

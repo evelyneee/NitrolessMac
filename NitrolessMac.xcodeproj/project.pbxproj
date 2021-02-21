@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		1E85FE7C24B5D0F800B23E2E /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E85FE7B24B5D0F800B23E2E /* Popover.swift */; };
-		1E85FE7E24B5D0F800B23E2E /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E85FE7D24B5D0F800B23E2E /* Views.swift */; };
+		1E85FE7E24B5D0F800B23E2E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E85FE7D24B5D0F800B23E2E /* MainView.swift */; };
 		1E85FE8024B5D0FE00B23E2E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E85FE7F24B5D0FE00B23E2E /* Assets.xcassets */; };
 		1E85FE8324B5D0FE00B23E2E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E85FE8224B5D0FE00B23E2E /* Preview Assets.xcassets */; };
 		321E2AE825D82AEC003DE548 /* EmoteGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321E2AE725D82AEC003DE548 /* EmoteGetter.swift */; };
+		3265D55025E1E8BE00A12823 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3265D54F25E1E8BE00A12823 /* SettingsView.swift */; };
+		3265D55225E1E92100A12823 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3265D55125E1E92100A12823 /* SearchView.swift */; };
 		E164190D25DDFE7E00A18E9D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E164190A25DDFE7E00A18E9D /* NetworkManager.swift */; };
 		E164190E25DDFE7E00A18E9D /* GifManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E164190B25DDFE7E00A18E9D /* GifManager.swift */; };
 		E164190F25DDFE7E00A18E9D /* NitrolessParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E164190C25DDFE7E00A18E9D /* NitrolessParser.swift */; };
@@ -21,12 +23,14 @@
 /* Begin PBXFileReference section */
 		1E85FE7824B5D0F800B23E2E /* NitrolessMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NitrolessMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E85FE7B24B5D0F800B23E2E /* Popover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
-		1E85FE7D24B5D0F800B23E2E /* Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
+		1E85FE7D24B5D0F800B23E2E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		1E85FE7F24B5D0FE00B23E2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E85FE8224B5D0FE00B23E2E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1E85FE8424B5D0FE00B23E2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E85FE8524B5D0FE00B23E2E /* NitrolessMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NitrolessMac.entitlements; sourceTree = "<group>"; };
 		321E2AE725D82AEC003DE548 /* EmoteGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmoteGetter.swift; sourceTree = "<group>"; };
+		3265D54F25E1E8BE00A12823 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		3265D55125E1E92100A12823 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		E164190A25DDFE7E00A18E9D /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		E164190B25DDFE7E00A18E9D /* GifManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GifManager.swift; sourceTree = "<group>"; };
 		E164190C25DDFE7E00A18E9D /* NitrolessParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NitrolessParser.swift; sourceTree = "<group>"; };
@@ -65,7 +69,9 @@
 			children = (
 				E164190925DDFE7500A18E9D /* Amy's brainfucking code */,
 				1E85FE7B24B5D0F800B23E2E /* Popover.swift */,
-				1E85FE7D24B5D0F800B23E2E /* Views.swift */,
+				1E85FE7D24B5D0F800B23E2E /* MainView.swift */,
+				3265D55125E1E92100A12823 /* SearchView.swift */,
+				3265D54F25E1E8BE00A12823 /* SettingsView.swift */,
 				321E2AE725D82AEC003DE548 /* EmoteGetter.swift */,
 				1E85FE7F24B5D0FE00B23E2E /* Assets.xcassets */,
 				1E85FE8424B5D0FE00B23E2E /* Info.plist */,
@@ -164,8 +170,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E164191125DDFED600A18E9D /* NSNotification+Extension.swift in Sources */,
+				3265D55225E1E92100A12823 /* SearchView.swift in Sources */,
+				3265D55025E1E8BE00A12823 /* SettingsView.swift in Sources */,
 				E164190D25DDFE7E00A18E9D /* NetworkManager.swift in Sources */,
-				1E85FE7E24B5D0F800B23E2E /* Views.swift in Sources */,
+				1E85FE7E24B5D0F800B23E2E /* MainView.swift in Sources */,
 				321E2AE825D82AEC003DE548 /* EmoteGetter.swift in Sources */,
 				E164190E25DDFE7E00A18E9D /* GifManager.swift in Sources */,
 				E164190F25DDFE7E00A18E9D /* NitrolessParser.swift in Sources */,
@@ -297,11 +305,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NitrolessMac/NitrolessMac.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"NitrolessMac/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UUGF4RZ8S8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = NitrolessMac/Info.plist;
@@ -323,11 +331,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NitrolessMac/NitrolessMac.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"NitrolessMac/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = UUGF4RZ8S8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = NitrolessMac/Info.plist;

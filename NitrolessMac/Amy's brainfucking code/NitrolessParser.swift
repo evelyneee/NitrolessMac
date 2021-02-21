@@ -103,7 +103,7 @@ class NitrolessParser {
                 }
             }
         }
-        self.emotes = localArray
+        self.emotes = localArray.sorted(by: { $0.name < $1.name })
         for emote in arrayICanUse {
             var e = self.initialGenerate(emote: emote)
             NetworkManager.getData(url: e.url, completion: { (success, data) -> Void in
