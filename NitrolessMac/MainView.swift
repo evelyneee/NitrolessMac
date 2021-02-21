@@ -223,7 +223,7 @@ struct ContentView: View {
                     SettingsView(recentsenabled: $recentsenabled, searchenabled: $searchenabled, fiverowenabled: $fiverowenabled)
                 }
                 if currentViewSeen == 2 {
-                    SearchView(SearchText: $SearchText)
+                    SearchView(SearchText: $SearchText, fiverowenabled: $fiverowenabled)
                 }
             }
         }

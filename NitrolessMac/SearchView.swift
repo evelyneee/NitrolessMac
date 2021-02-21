@@ -13,40 +13,73 @@ struct SearchView: View {
         GridItem(spacing: 10),
         GridItem(spacing: 10),
         GridItem(spacing: 10),
+        GridItem(spacing: 10)
+    ]
+    var fiverowcolumns: [GridItem] = [
+        GridItem(spacing: 10),
+        GridItem(spacing: 10),
+        GridItem(spacing: 10),
         GridItem(spacing: 10),
         GridItem(spacing: 10)
     ]
     let pasteboard = NSPasteboard.general
     @Binding var SearchText: String
+    @Binding var fiverowenabled: Bool
     var body: some View {
         VStack {
             TextField("Search", text: $SearchText)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            LazyVGrid(columns: columns) {
-                ForEach(searchFilter(args: SearchText), id: \.self) { emote in
-                    Button(action: {
-                        pasteboard.clearContents()
-                        pasteboard.setString(emote.url.absoluteString, forType: NSPasteboard.PasteboardType.string)
-                        if recents.count == 3 {
-                            recents.remove(at: 2)
+            if fiverowenabled == true {
+                LazyVGrid(columns: fiverowcolumns) {
+                    ForEach(searchFilter(args: SearchText), id: \.self) { emote in
+                        Button(action: {
+                            pasteboard.clearContents()
+                            pasteboard.setString(emote.url.absoluteString, forType: NSPasteboard.PasteboardType.string)
+                            if recents.count == 3 {
+                                recents.remove(at: 2)
+                            }
+                            recents.insert(emote, at: 0)
+                        }) {
+                            VStack {
+                                FuckingSwiftUI(emote: emote)
+                                    .frame(maxWidth: 48, maxHeight: 48)
+                                    .scaledToFit()
+                                Text(emote.name ?? "")
+                                    .font(.caption)
+                                    .foregroundColor(.primary)
+                            }
                         }
-                        recents.insert(emote, at: 0)
-                    }) {
-                        VStack {
-                            FuckingSwiftUI(emote: emote)
-                                .frame(maxWidth: 48, maxHeight: 48)
-                                .scaledToFit()
-                            Text(emote.name ?? "")
-                                .font(.caption)
-                                .foregroundColor(.primary)
-                        }
+                        .buttonStyle(SpringyButton())
                     }
-                    .buttonStyle(SpringyButton())
                 }
+                .padding(.top)
+                .transition(.opacity)
+            } else {
+                LazyVGrid(columns: columns) {
+                    ForEach(searchFilter(args: SearchText), id: \.self) { emote in
+                        Button(action: {
+                            pasteboard.clearContents()
+                            pasteboard.setString(emote.url.absoluteString, forType: NSPasteboard.PasteboardType.string)
+                            if recents.count == 3 {
+                                recents.remove(at: 2)
+                            }
+                            recents.insert(emote, at: 0)
+                        }) {
+                            VStack {
+                                FuckingSwiftUI(emote: emote)
+                                    .frame(maxWidth: 48, maxHeight: 48)
+                                    .scaledToFit()
+                                Text(emote.name ?? "")
+                                    .font(.caption)
+                                    .foregroundColor(.primary)
+                            }
+                        }
+                        .buttonStyle(SpringyButton())
+                    }
+                }
+                .padding(.top)
+                .transition(.opacity)
             }
-            .padding(.top)
-            .transition(.opacity)
-            
         }
 
     }
